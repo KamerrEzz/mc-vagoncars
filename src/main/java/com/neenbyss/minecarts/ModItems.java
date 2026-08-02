@@ -16,10 +16,18 @@ public class ModItems {
 
 	public static final Item TALADRO_CARRITO = new Item(new Item.Properties().setId(TALADRO_CARRITO_KEY));
 
+	public static final ResourceKey<Item> SPAWN_CARRITO_KEY = ResourceKey.create(Registries.ITEM, Minecarts.id("spawn_carrito"));
+
+	public static final Item SPAWN_CARRITO = new SpawnCarritoItem(new Item.Properties().setId(SPAWN_CARRITO_KEY));
+
 	public static void registerModItems() {
 		Registry.register(BuiltInRegistries.ITEM, TALADRO_CARRITO_KEY, TALADRO_CARRITO);
+		Registry.register(BuiltInRegistries.ITEM, SPAWN_CARRITO_KEY, SPAWN_CARRITO);
 
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
-				.register(entries -> entries.accept(TALADRO_CARRITO));
+				.register(entries -> {
+					entries.accept(TALADRO_CARRITO);
+					entries.accept(SPAWN_CARRITO);
+				});
 	}
 }

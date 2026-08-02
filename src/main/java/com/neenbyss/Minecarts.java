@@ -1,5 +1,6 @@
 package com.neenbyss;
 
+import com.neenbyss.minecarts.ModEntityTypes;
 import com.neenbyss.minecarts.ModItems;
 
 import net.fabricmc.api.ModInitializer;
@@ -26,6 +27,7 @@ public class Minecarts implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 
 		ModItems.registerModItems();
+		ModEntityTypes.registerModEntityTypes();
 	}
 
 	public static Identifier id(String path) {

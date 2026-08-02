@@ -1,3 +1,5 @@
 {
-  "item.minecarts.taladro_carrito": "Drill"
+  "item.minecarts.taladro_carrito": "Drill",
+  "item.minecarts.spawn_carrito": "Spawn Carrito",
+  "entity.minecarts.carrito": "Carrito"
 }
