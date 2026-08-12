@@ -3,6 +3,7 @@ package com.neenbyss.minecarts;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -20,6 +21,12 @@ import net.minecraft.world.phys.Vec3;
 public class CarritoEntity extends Entity {
 	private static final float MOVE_SPEED = 0.3f;
 	private static final float TURN_SPEED = 5.0f;
+	// Radians of wheel spin per tick per (block/tick) of horizontal speed. Purely
+	// cosmetic — tuned by eye, not tied to the model's actual wheel radius.
+	private static final float WHEEL_ROTATION_SPEED = 4.0f;
+
+	private float wheelRotO;
+	private float wheelRot;
 
 	// Set every client tick by MinecartsClient from the local player's raw key
 	// state. Needed because the client predicts this entity's movement locally
@@ -89,6 +96,10 @@ public class CarritoEntity extends Entity {
 		this.clientInput = input;
 	}
 
+	public float getWheelRotation(float partialTick) {
+		return Mth.lerp(partialTick, this.wheelRotO, this.wheelRot);
+	}
+
 	@Override
 	public void tick() {
 		super.tick();
@@ -106,6 +117,9 @@ public class CarritoEntity extends Entity {
 		}
 
 		this.move(MoverType.SELF, this.getDeltaMovement());
+
+		this.wheelRotO = this.wheelRot;
+		this.wheelRot += (float) this.getDeltaMovement().horizontalDistance() * WHEEL_ROTATION_SPEED;
 	}
 
 	private void driveFromInput(Input input) {
