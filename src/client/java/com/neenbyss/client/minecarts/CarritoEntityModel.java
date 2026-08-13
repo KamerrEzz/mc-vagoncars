@@ -61,7 +61,7 @@ public class CarritoEntityModel extends EntityModel<CarritoEntityRenderState> {
 	public void setupAnim(CarritoEntityRenderState renderState) {
 		super.setupAnim(renderState);
 
-		float wheelSpin = renderState.wheelRotation;
+		float wheelSpin = -renderState.wheelRotation;
 		this.llantaDelDer.xRot = wheelSpin;
 		this.llantaDelIzq.xRot = wheelSpin;
 		this.llantaTrasIzq.xRot = wheelSpin;
