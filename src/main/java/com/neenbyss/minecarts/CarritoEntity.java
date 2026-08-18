@@ -92,6 +92,13 @@ public class CarritoEntity extends Entity {
 		return 0.04;
 	}
 
+	@Override
+	public float maxUpStep() {
+		// Entity's own default is 0.0 — without this, move() treats a one-block
+		// ledge as a wall and the entity can descend slopes but not climb them.
+		return 1.0f;
+	}
+
 	public void setClientInput(Input input) {
 		this.clientInput = input;
 	}
