@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-08-18
+
+### Fixed
+- Carrito can now climb one-block ledges instead of only being able to descend them
+- Carrito no longer jitters for other players in multiplayer — clients that aren't driving it now interpolate the server position instead of running their own physics
+
 ## [0.2.1] - 2026-08-12
 
 ### Fixed
@@ -25,7 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial Fabric mod scaffold for Minecraft 26.2, including the "Drill" (`taladro_carrito`) item with model, texture, and language entry
 - Carrito, a rail-free vehicle entity you can mount and drive freely with WASD
 
-[Unreleased]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/KamerrEzz/mc-vagoncars/releases/tag/v0.1.0
