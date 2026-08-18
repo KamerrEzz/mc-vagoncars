@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.InterpolationHandler;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Input;
@@ -27,6 +28,11 @@ public class CarritoEntity extends Entity {
 
 	private float wheelRotO;
 	private float wheelRot;
+
+	// Lets non-controlling clients (bystanders) smoothly interpolate toward the
+	// server-synced position instead of snapping every time a position packet
+	// arrives — same mechanism AbstractBoat uses. See tick() and getInterpolation().
+	private final InterpolationHandler interpolation = new InterpolationHandler(this);
 
 	// Set every client tick by MinecartsClient from the local player's raw key
 	// state. Needed because the client predicts this entity's movement locally
@@ -99,6 +105,11 @@ public class CarritoEntity extends Entity {
 		return 1.0f;
 	}
 
+	@Override
+	public InterpolationHandler getInterpolation() {
+		return this.interpolation;
+	}
+
 	public void setClientInput(Input input) {
 		this.clientInput = input;
 	}
@@ -110,6 +121,17 @@ public class CarritoEntity extends Entity {
 	@Override
 	public void tick() {
 		super.tick();
+
+		this.interpolation.interpolate();
+
+		if (this.level().isClientSide() && !this.isLocalInstanceAuthoritative()) {
+			// A bystander client (someone else is driving, or nobody is). Don't run
+			// local physics here — it would fight the server-authoritative position
+			// with stale/empty input. Let the InterpolationHandler above carry it.
+			this.wheelRotO = this.wheelRot;
+			this.wheelRot += (float) this.getDeltaMovement().horizontalDistance() * WHEEL_ROTATION_SPEED;
+			return;
+		}
 
 		if (!this.onGround()) {
 			this.applyGravity();
