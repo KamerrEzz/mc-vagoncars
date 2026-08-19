@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-18
+
+### Added
+- Multi-version support via Stonecutter — the mod now also builds and ships for Minecraft 1.21.1, alongside the existing 26.2 target
+
 ## [0.2.2] - 2026-08-18
 
 ### Fixed
@@ -31,7 +36,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial Fabric mod scaffold for Minecraft 26.2, including the "Drill" (`taladro_carrito`) item with model, texture, and language entry
 - Carrito, a rail-free vehicle entity you can mount and drive freely with WASD
 
-[Unreleased]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/KamerrEzz/mc-vagoncars/compare/v0.1.0...v0.2.0

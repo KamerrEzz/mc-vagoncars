@@ -2,7 +2,7 @@
 mod.id = "minecarts"
 mod.name = "minecarts"
 mod.group = "com.neenbyss"
-mod.version = "0.2.2"
+mod.version = "0.3.0"
 
 deps.fabric_loader = "0.19.3"
 loomx.loom_version = "1.17-SNAPSHOT"
