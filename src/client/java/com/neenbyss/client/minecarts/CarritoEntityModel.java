@@ -8,16 +8,33 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+//? if <26 {
+/*import com.neenbyss.minecarts.CarritoEntity;
+import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.renderer.RenderType;
+*///?}
 
+//? if >=26 {
 public class CarritoEntityModel extends EntityModel<CarritoEntityRenderState> {
+//?} else {
+/*public class CarritoEntityModel extends HierarchicalModel<CarritoEntity> {
+*///?}
 	private final ModelPart bbMain;
 	private final ModelPart llantaDelDer;
 	private final ModelPart llantaDelIzq;
 	private final ModelPart llantaTrasIzq;
 	private final ModelPart llantaTrasDer;
+	//? if <26 {
+	/*private final ModelPart root;
+	*///?}
 
 	public CarritoEntityModel(ModelPart root) {
+		//? if >=26 {
 		super(root);
+		//?} else {
+		/*super(RenderType::entityCutoutNoCull);
+		this.root = root;
+		*///?}
 		this.bbMain = root.getChild("bb_main");
 		this.llantaDelDer = this.bbMain.getChild("llanta_del_der_r1");
 		this.llantaDelIzq = this.bbMain.getChild("llanta_del_izq_r1");
@@ -57,6 +74,14 @@ public class CarritoEntityModel extends EntityModel<CarritoEntityRenderState> {
 		return LayerDefinition.create(meshDefinition, 64, 64);
 	}
 
+	//? if <26 {
+	/*@Override
+	public ModelPart root() {
+		return this.root;
+	}
+	*///?}
+
+	//? if >=26 {
 	@Override
 	public void setupAnim(CarritoEntityRenderState renderState) {
 		super.setupAnim(renderState);
@@ -67,4 +92,19 @@ public class CarritoEntityModel extends EntityModel<CarritoEntityRenderState> {
 		this.llantaTrasIzq.xRot = wheelSpin;
 		this.llantaTrasDer.xRot = wheelSpin;
 	}
+	//?} else {
+	/*@Override
+	public void setupAnim(CarritoEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		// No-op: wheel spin needs partialTick, which this pre-render-state API
+		// doesn't pass down here. CarritoEntityRenderer applies it directly via
+		// setWheelRotation() instead, since render() does receive partialTick.
+	}
+
+	void setWheelRotation(float wheelSpin) {
+		this.llantaDelDer.xRot = wheelSpin;
+		this.llantaDelIzq.xRot = wheelSpin;
+		this.llantaTrasIzq.xRot = wheelSpin;
+		this.llantaTrasDer.xRot = wheelSpin;
+	}
+	*///?}
 }

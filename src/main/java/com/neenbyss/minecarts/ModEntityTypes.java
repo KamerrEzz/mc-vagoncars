@@ -16,7 +16,11 @@ public class ModEntityTypes {
 			.sized(1.0f, 1.0f)
 			.clientTrackingRange(8)
 			.updateInterval(3)
+			//? if >=26 {
 			.build(CARRITO_KEY);
+			//?} else {
+			/*.build("carrito");
+			*///?}
 
 	public static void registerModEntityTypes() {
 		Registry.register(BuiltInRegistries.ENTITY_TYPE, CARRITO_KEY, CARRITO);
