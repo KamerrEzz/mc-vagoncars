@@ -13,7 +13,7 @@ public class ModEntityTypes {
 	public static final ResourceKey<EntityType<?>> CARRITO_KEY = ResourceKey.create(Registries.ENTITY_TYPE, Minecarts.id("carrito"));
 
 	public static final EntityType<CarritoEntity> CARRITO = EntityType.Builder.<CarritoEntity>of(CarritoEntity::new, MobCategory.MISC)
-			.sized(1.0f, 1.0f)
+			.sized(0.98f, 0.7f)
 			.clientTrackingRange(8)
 			.updateInterval(3)
 			//? if >=26 {
